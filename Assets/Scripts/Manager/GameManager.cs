@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MoveActiveTRUE()
     {
-        yield return new WaitForSeconds(2.1f);
+        yield return new WaitForSeconds(2.5f);
         MoveControler.SetActive(true);
     }
 }

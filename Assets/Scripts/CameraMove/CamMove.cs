@@ -4,30 +4,44 @@ using UnityEngine;
 
 public class CamMove : MonoBehaviour
 {
-    Vector3 move = Vector3.zero;
-
-    public bool LeftMove = false;
-    public bool RightMove = false;
-    private float Speed = 5;
-
-    private void Awake()
+    private float move;
+    // Start is called before the first frame update
+    void Start()
     {
-        LeftMove = false;
-        RightMove = false;
+        StartCoroutine(MoveCamera());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (LeftMove)
+        
+    }
+
+    IEnumerator MoveCamera()
+    {
+        for(int i = 1; i < 11; i++)
         {
-            move = new Vector3(-0.1f, 0, 0);
-            transform.position += move * Speed * Time.deltaTime;
+            move = i * 0.2f;
+            transform.position = new Vector3(-move, 0, -10);
+            yield return new WaitForSeconds(0.05f);
+            if(i == 10)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
         }
-        if (RightMove)
+
+        for (int i = 10; i > 0; i--)
         {
-            move = new Vector3(0.1f, 0, 0);
-            transform.position += move * Speed * Time.deltaTime;
+            move = i * 0.2f;
+            transform.position = new Vector3(-move, 0, -10);
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        for (int i = 1; i < 11; i++)
+        {
+            move = i * 0.2f;
+            transform.position = new Vector3(move, 0, -10);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }
